@@ -1,0 +1,12 @@
+language: go
+go:
+- 1.16.x
+- master
+go_import_path: github.com/chekun/kuaizhan
+env:
+  - APP_KEY=fake_app_key
+  - APP_SECRET=fake_app_secret
+  - SITE_ID=123
+  - SITE_DOMAIN=test
+script:
+- go test -v .
