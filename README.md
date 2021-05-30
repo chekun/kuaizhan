@@ -13,7 +13,7 @@ appSecret := "your app secret"
 client := kuaizhan.NewClient(appKey, appSecret, nil)
 // 获取站点信息
 siteID := "1234567"
-siteInfo, err := kuaizhan.TbkGetSiteInfo(siteID, "")
+siteInfo, err := client.TbkGetSiteInfo(siteID, "")
 if err != nil {
   panic(err)
 }
