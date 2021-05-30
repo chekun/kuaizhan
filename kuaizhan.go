@@ -488,3 +488,15 @@ func (c *Client) TbkGetSiteBansCount(siteID string) (uint, error) {
 	_ = json.Unmarshal(body, &f)
 	return f.Count, nil
 }
+
+// AgentChangeDomain 修改客户域名
+func (c *Client) AgentChangeDomain(siteID, domain string) error {
+	_, err := c.PostForm("/v1/agent/changeDomain", url.Values{
+		"siteId": []string{siteID},
+		"domain": []string{domain},
+	})
+	if err != nil {
+		return err
+	}
+	return nil
+}
