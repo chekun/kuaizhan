@@ -373,6 +373,24 @@ func (c *Client) TbkGetPageIds(siteID string) ([]uint, error) {
 	return f.PageIDs, nil
 }
 
+type Page struct {
+	PageID uint   `json:"pageId"`
+	Title  string `json:"title"`
+}
+
+// TbkGetPageName 获取所有站点页面名称, 详细查看 https://www.yuque.com/kuaizhan_help/ndcqmp/mehpsf
+func (c *Client) TbkGetPageName(siteID string) ([]*Page, error) {
+	body, err := c.Get("/v1/tbk/getPageName", url.Values{
+		"siteId": []string{siteID},
+	})
+	if err != nil {
+		return nil, err
+	}
+	pages := make([]*Page, 0)
+	_ = json.Unmarshal(body, &pages)
+	return pages, nil
+}
+
 // TbkCreateSitePage 新建极速版站点页面, 详细查看 https://www.yuque.com/kuaizhan_help/ndcqmp/hexyr9
 func (c *Client) TbkCreateSitePage(siteID, template string) (uint, error) {
 	if template == "" {

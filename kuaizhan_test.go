@@ -151,6 +151,16 @@ func TestTbkGetPageIds(t *testing.T) {
 	t.Log("page ids are ", pageIDs)
 }
 
+func TestTbkGetPageName(t *testing.T) {
+	client := setUpClient(t)
+	pages, err := client.TbkGetPageName(os.Getenv("SITE_ID"))
+	if err != nil {
+		t.Logf("failed to get pages, %s\n", err)
+		return
+	}
+	t.Logf("pages are %+v \n", pages)
+}
+
 func TestTbkCreateSitePage(t *testing.T) {
 	client := setUpClient(t)
 	pageID, err := client.TbkCreateSitePage(os.Getenv("SITE_ID"), "")
