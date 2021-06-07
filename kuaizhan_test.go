@@ -93,7 +93,7 @@ func TestTbkRevertShortURL(t *testing.T) {
 
 func TestTbkModifyPageJs(t *testing.T) {
 	client := setUpClient(t)
-	err := client.TbkModifyPageJs(os.Getenv("SITE_ID"), "", `alert('it works!')`)
+	err := client.TbkModifyPageJs(os.Getenv("SITE_ID"), "", `alert('it works!')`, false)
 	if err != nil {
 		t.Logf("failed to modify page js, %s\n", err)
 		return
