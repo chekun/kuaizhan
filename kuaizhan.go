@@ -285,11 +285,16 @@ func (c *Client) TbkRevertShortURL(shortURL string) (*RevertedShortURLInfo, erro
 }
 
 // TbkModifyPageJs 更新页面js, 详细查看 https://www.yuque.com/kuaizhan_help/ndcqmp/kahcrz
-func (c *Client) TbkModifyPageJs(siteID, pageID, content string) error {
+func (c *Client) TbkModifyPageJs(siteID, pageID, content string, isEncrypted bool) error {
+	isEncryptedContent := "false"
+	if isEncrypted {
+		isEncryptedContent = "true"
+	}
 	_, err := c.PostForm("/v1/tbk/modifyPageJs", url.Values{
-		"siteId":  []string{siteID},
-		"pageId":  []string{pageID},
-		"content": []string{content},
+		"siteId":           []string{siteID},
+		"pageId":           []string{pageID},
+		"content":          []string{content},
+		"isEncryptContent": []string{isEncryptedContent},
 	})
 	if err != nil {
 		return err
