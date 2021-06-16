@@ -512,6 +512,21 @@ func (c *Client) TbkGetSiteBansCount(siteID string) (uint, error) {
 	return f.Count, nil
 }
 
+// TbkSitePvUvBySiteId 根据时间获取站点的流量, 详细查看 https://www.yuque.com/kuaizhan_help/ndcqmp/mphtng
+func (c *Client) TbkSitePvUvBySiteId(siteID, fromDate, toDate string) (*SiteTraffic, error) {
+	body, err := c.PostForm("/v1/tbk/getSitePvUvBySiteId", url.Values{
+		"siteId":    []string{siteID},
+		"timeStart": []string{fromDate},
+		"timeEnd":   []string{toDate},
+	})
+	if err != nil {
+		return nil, err
+	}
+	var f SiteTraffic
+	_ = json.Unmarshal(body, &f)
+	return &f, nil
+}
+
 // AgentChangeDomain 修改客户域名
 func (c *Client) AgentChangeDomain(siteID, domain string) error {
 	_, err := c.PostForm("/v1/agent/changeDomain", url.Values{
