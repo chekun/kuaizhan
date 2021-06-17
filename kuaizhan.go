@@ -514,7 +514,7 @@ func (c *Client) TbkGetSiteBansCount(siteID string) (uint, error) {
 
 // TbkSitePvUvBySiteId 根据时间获取站点的流量, 详细查看 https://www.yuque.com/kuaizhan_help/ndcqmp/mphtng
 func (c *Client) TbkSitePvUvBySiteId(siteID, fromDate, toDate string) (*SiteTraffic, error) {
-	body, err := c.PostForm("/v1/tbk/getSitePvUvBySiteId", url.Values{
+	body, err := c.Get("/v1/tbk/getSitePvUvBySiteId", url.Values{
 		"siteId":    []string{siteID},
 		"timeStart": []string{fromDate},
 		"timeEnd":   []string{toDate},

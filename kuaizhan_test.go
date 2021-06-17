@@ -230,3 +230,13 @@ func TestTbkGetSiteBansCount(t *testing.T) {
 	}
 	t.Logf("site bans %d times", count)
 }
+
+func TestTbkSitePvUvBySiteId(t *testing.T) {
+	client := setUpClient(t)
+	traffic, err := client.TbkSitePvUvBySiteId(os.Getenv("SITE_ID"), "20210617", "20210617")
+	if err != nil {
+		t.Logf("failed to get site traffic, %s\n", err)
+		return
+	}
+	t.Logf("site traffic %+v", *traffic)
+}
